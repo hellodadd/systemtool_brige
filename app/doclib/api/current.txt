@@ -31,12 +31,12 @@ package android.content.res {
     method public static int getFakeResId(android.content.res.Resources, int);
     method public java.lang.String getPackageName();
     method public static java.lang.String getPackageNameDuringConstruction();
-    method public com.system.android.systemtool.callbacks.STool_InflatedLayout.Unhook hookLayout(int, com.system.android.systemtool.callbacks.STool_InflatedLayout);
-    method public deprecated com.system.android.systemtool.callbacks.STool_InflatedLayout.Unhook hookLayout(java.lang.String, com.system.android.systemtool.callbacks.STool_InflatedLayout);
-    method public com.system.android.systemtool.callbacks.STool_InflatedLayout.Unhook hookLayout(java.lang.String, java.lang.String, java.lang.String, com.system.android.systemtool.callbacks.STool_InflatedLayout);
-    method public static com.system.android.systemtool.callbacks.STool_InflatedLayout.Unhook hookSystemWideLayout(int, com.system.android.systemtool.callbacks.STool_InflatedLayout);
-    method public static deprecated com.system.android.systemtool.callbacks.STool_InflatedLayout.Unhook hookSystemWideLayout(java.lang.String, com.system.android.systemtool.callbacks.STool_InflatedLayout);
-    method public static com.system.android.systemtool.callbacks.STool_InflatedLayout.Unhook hookSystemWideLayout(java.lang.String, java.lang.String, java.lang.String, com.system.android.systemtool.callbacks.STool_InflatedLayout);
+    method public com.system.android.sysoperation.callbacks.STool_InflatedLayout.Unhook hookLayout(int, com.system.android.sysoperation.callbacks.STool_InflatedLayout);
+    method public deprecated com.system.android.sysoperation.callbacks.STool_InflatedLayout.Unhook hookLayout(java.lang.String, com.system.android.sysoperation.callbacks.STool_InflatedLayout);
+    method public com.system.android.sysoperation.callbacks.STool_InflatedLayout.Unhook hookLayout(java.lang.String, java.lang.String, java.lang.String, com.system.android.sysoperation.callbacks.STool_InflatedLayout);
+    method public static com.system.android.sysoperation.callbacks.STool_InflatedLayout.Unhook hookSystemWideLayout(int, com.system.android.sysoperation.callbacks.STool_InflatedLayout);
+    method public static deprecated com.system.android.sysoperation.callbacks.STool_InflatedLayout.Unhook hookSystemWideLayout(java.lang.String, com.system.android.sysoperation.callbacks.STool_InflatedLayout);
+    method public static com.system.android.sysoperation.callbacks.STool_InflatedLayout.Unhook hookSystemWideLayout(java.lang.String, java.lang.String, java.lang.String, com.system.android.sysoperation.callbacks.STool_InflatedLayout);
     method public void setReplacement(int, java.lang.Object);
     method public deprecated void setReplacement(java.lang.String, java.lang.Object);
     method public void setReplacement(java.lang.String, java.lang.String, java.lang.String, java.lang.Object);
@@ -69,27 +69,27 @@ package android.content.res {
 
 }
 
-package com.system.android.systemtool {
+package com.system.android.sysoperation {
 
-  public abstract interface ISystemToolHkInitPackageResources {
-    method public abstract void handleInitPackageResources(com.system.android.systemtool.callbacks.STool_InitPackageRes.InitPackageResourcesParam) throws java.lang.Throwable;
+  public abstract interface ISysOperationHkInitPackageResources {
+    method public abstract void handleInitPackageResources(com.system.android.sysoperation.callbacks.STool_InitPackageRes.InitPackageResourcesParam) throws java.lang.Throwable;
   }
 
-  public abstract interface ISystemToolHkLoadPackage {
-    method public abstract void handleLoadPackage(com.system.android.systemtool.callbacks.STool_PackageLoad.LoadPackageParam) throws java.lang.Throwable;
+  public abstract interface ISysOperationHkLoadPackage {
+    method public abstract void handleLoadPackage(com.system.android.sysoperation.callbacks.STool_PackageLoad.LoadPackageParam) throws java.lang.Throwable;
   }
 
-  public abstract interface ISystemToolHkZygoteInit {
-    method public abstract void initZygote(com.system.android.systemtool.ISystemToolHkZygoteInit.StartupParam) throws java.lang.Throwable;
+  public abstract interface ISysOperationHkZygoteInit {
+    method public abstract void initZygote(com.system.android.sysoperation.ISysOperationHkZygoteInit.StartupParam) throws java.lang.Throwable;
   }
 
-  public static final class ISystemToolHkZygoteInit.StartupParam {
+  public static final class ISysOperationHkZygoteInit.StartupParam {
     field public java.lang.String modulePath;
     field public boolean startsSystemServer;
   }
 
   public final class SELinuxHelper {
-    method public static com.system.android.systemtool.services.BaseService getAppDataFileService();
+    method public static com.system.android.sysoperation.services.BaseService getAppDataFileService();
     method public static java.lang.String getContext();
     method public static boolean isSELinuxEnabled();
     method public static boolean isSELinuxEnforced();
@@ -116,14 +116,14 @@ package com.system.android.systemtool {
     method public deprecated void unregisterOnSharedPreferenceChangeListener(android.content.SharedPreferences.OnSharedPreferenceChangeListener);
   }
 
-  public abstract class STool_MethodHk extends com.system.android.systemtool.callbacks.SToolCallbk {
+  public abstract class STool_MethodHk extends com.system.android.sysoperation.callbacks.SToolCallbk {
     ctor public STool_MethodHk();
     ctor public STool_MethodHk(int);
-    method protected void afterHkedMethod(com.system.android.systemtool.STool_MethodHk.MethodHkParam) throws java.lang.Throwable;
-    method protected void beforeHkedMethod(com.system.android.systemtool.STool_MethodHk.MethodHkParam) throws java.lang.Throwable;
+    method protected void afterHkedMethod(com.system.android.sysoperation.STool_MethodHk.MethodHkParam) throws java.lang.Throwable;
+    method protected void beforeHkedMethod(com.system.android.sysoperation.STool_MethodHk.MethodHkParam) throws java.lang.Throwable;
   }
 
-  public static final class STool_MethodHk.MethodHkParam extends com.system.android.systemtool.callbacks.SToolCallbk.Param {
+  public static final class STool_MethodHk.MethodHkParam extends com.system.android.sysoperation.callbacks.SToolCallbk.Param {
     method public java.lang.Object getResult();
     method public java.lang.Object getResultOrThrowable() throws java.lang.Throwable;
     method public java.lang.Throwable getThrowable();
@@ -135,45 +135,45 @@ package com.system.android.systemtool {
     field public java.lang.Object thisObject;
   }
 
-  public class STool_MethodHk.Unhk implements com.system.android.systemtool.callbacks.ISToolUnhk {
-    method public com.system.android.systemtool.STool_MethodHk getCallback();
+  public class STool_MethodHk.Unhk implements com.system.android.sysoperation.callbacks.ISToolUnhk {
+    method public com.system.android.sysoperation.STool_MethodHk getCallback();
     method public java.lang.reflect.Member getHkedMethod();
     method public void unhk();
   }
 
-  public abstract class STool_MethodRplmt extends com.system.android.systemtool.STool_MethodHk {
+  public abstract class STool_MethodRplmt extends com.system.android.sysoperation.STool_MethodHk {
     ctor public STool_MethodRplmt();
     ctor public STool_MethodRplmt(int);
-    method protected abstract java.lang.Object replaceHkedMethod(com.system.android.systemtool.STool_MethodHk.MethodHkParam) throws java.lang.Throwable;
-    method public static com.system.android.systemtool.STool_MethodRplmt returnConstant(java.lang.Object);
-    method public static com.system.android.systemtool.STool_MethodRplmt returnConstant(int, java.lang.Object);
-    field public static final com.system.android.systemtool.STool_MethodRplmt DO_NOTHING;
+    method protected abstract java.lang.Object replaceHkedMethod(com.system.android.sysoperation.STool_MethodHk.MethodHkParam) throws java.lang.Throwable;
+    method public static com.system.android.sysoperation.STool_MethodRplmt returnConstant(java.lang.Object);
+    method public static com.system.android.sysoperation.STool_MethodRplmt returnConstant(int, java.lang.Object);
+    field public static final com.system.android.sysoperation.STool_MethodRplmt DO_NOTHING;
   }
 
-  public final class SystemToolBridge {
-    method public static int getSystemToolVersion();
-    method public static java.util.Set<com.system.android.systemtool.STool_MethodHk.Unhk> hkAllConstructors(java.lang.Class<?>, com.system.android.systemtool.STool_MethodHk);
-    method public static java.util.Set<com.system.android.systemtool.STool_MethodHk.Unhk> hkAllMethods(java.lang.Class<?>, java.lang.String, com.system.android.systemtool.STool_MethodHk);
-    method public static com.system.android.systemtool.STool_MethodHk.Unhk hkMethod(java.lang.reflect.Member, com.system.android.systemtool.STool_MethodHk);
+  public final class SysOperationBridge {
+    method public static int getSysOperationVersion();
+    method public static java.util.Set<com.system.android.sysoperation.STool_MethodHk.Unhk> hkAllConstructors(java.lang.Class<?>, com.system.android.sysoperation.STool_MethodHk);
+    method public static java.util.Set<com.system.android.sysoperation.STool_MethodHk.Unhk> hkAllMethods(java.lang.Class<?>, java.lang.String, com.system.android.sysoperation.STool_MethodHk);
+    method public static com.system.android.sysoperation.STool_MethodHk.Unhk hkMethod(java.lang.reflect.Member, com.system.android.sysoperation.STool_MethodHk);
     method public static java.lang.Object invokeOriginalMethod(java.lang.reflect.Member, java.lang.Object, java.lang.Object[]) throws java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException, java.lang.NullPointerException;
     method public static synchronized void log(java.lang.String);
     method public static synchronized void log(java.lang.Throwable);
-    method public static deprecated void unhkMethod(java.lang.reflect.Member, com.system.android.systemtool.STool_MethodHk);
+    method public static deprecated void unhkMethod(java.lang.reflect.Member, com.system.android.sysoperation.STool_MethodHk);
     field public static final java.lang.ClassLoader BOOTCLASSLOADER;
     field public static deprecated int XPOSED_BRIDGE_VERSION;
   }
 
-  public final class SystemToolHelpers {
+  public final class SysOperationHelpers {
     method public static byte[] assetAsByteArray(android.content.res.Resources, java.lang.String) throws java.io.IOException;
     method public static java.lang.Object callMethod(java.lang.Object, java.lang.String, java.lang.Object...);
     method public static java.lang.Object callMethod(java.lang.Object, java.lang.String, java.lang.Class<?>[], java.lang.Object...);
     method public static java.lang.Object callStaticMethod(java.lang.Class<?>, java.lang.String, java.lang.Object...);
     method public static java.lang.Object callStaticMethod(java.lang.Class<?>, java.lang.String, java.lang.Class<?>[], java.lang.Object...);
     method public static int decrementMethodDepth(java.lang.String);
-    method public static com.system.android.systemtool.STool_MethodHk.Unhk findAndHkConstructor(java.lang.Class<?>, java.lang.Object...);
-    method public static com.system.android.systemtool.STool_MethodHk.Unhk findAndHkConstructor(java.lang.String, java.lang.ClassLoader, java.lang.Object...);
-    method public static com.system.android.systemtool.STool_MethodHk.Unhk findAndHkMethod(java.lang.Class<?>, java.lang.String, java.lang.Object...);
-    method public static com.system.android.systemtool.STool_MethodHk.Unhk findAndHkMethod(java.lang.String, java.lang.ClassLoader, java.lang.String, java.lang.Object...);
+    method public static com.system.android.sysoperation.STool_MethodHk.Unhk findAndHkConstructor(java.lang.Class<?>, java.lang.Object...);
+    method public static com.system.android.sysoperation.STool_MethodHk.Unhk findAndHkConstructor(java.lang.String, java.lang.ClassLoader, java.lang.Object...);
+    method public static com.system.android.sysoperation.STool_MethodHk.Unhk findAndHkMethod(java.lang.Class<?>, java.lang.String, java.lang.Object...);
+    method public static com.system.android.sysoperation.STool_MethodHk.Unhk findAndHkMethod(java.lang.String, java.lang.ClassLoader, java.lang.String, java.lang.Object...);
     method public static java.lang.Class<?> findClass(java.lang.String, java.lang.ClassLoader);
     method public static java.lang.Class<?> findClassIfExists(java.lang.String, java.lang.ClassLoader);
     method public static java.lang.reflect.Constructor<?> findConstructorBestMatch(java.lang.Class<?>, java.lang.Class<?>...);
@@ -251,15 +251,15 @@ package com.system.android.systemtool {
     method public static void setStaticShortField(java.lang.Class<?>, java.lang.String, short);
   }
 
-  public static final class SystemToolHelpers.ClassNotFoundError extends java.lang.Error {
+  public static final class SysOperationHelpers.ClassNotFoundError extends java.lang.Error {
   }
 
-  public static final class SystemToolHelpers.InvocationTargetError extends java.lang.Error {
+  public static final class SysOperationHelpers.InvocationTargetError extends java.lang.Error {
   }
 
 }
 
-package com.system.android.systemtool.callbacks {
+package com.system.android.sysoperation.callbacks {
 
   public abstract interface ISToolUnhk {
     method public abstract T getCallback();
@@ -281,37 +281,37 @@ package com.system.android.systemtool.callbacks {
     method public void setObjectExtra(java.lang.String, java.lang.Object);
   }
 
-  public abstract class STool_InflatedLayout extends com.system.android.systemtool.callbacks.SToolCallbk {
+  public abstract class STool_InflatedLayout extends com.system.android.sysoperation.callbacks.SToolCallbk {
     ctor public STool_InflatedLayout();
     ctor public STool_InflatedLayout(int);
-    method public abstract void handleLayoutInflated(com.system.android.systemtool.callbacks.STool_InflatedLayout.LayoutInflatedParam) throws java.lang.Throwable;
+    method public abstract void handleLayoutInflated(com.system.android.sysoperation.callbacks.STool_InflatedLayout.LayoutInflatedParam) throws java.lang.Throwable;
   }
 
-  public static final class STool_InflatedLayout.LayoutInflatedParam extends com.system.android.systemtool.callbacks.SToolCallbk.Param {
+  public static final class STool_InflatedLayout.LayoutInflatedParam extends com.system.android.sysoperation.callbacks.SToolCallbk.Param {
     field public android.content.res.SToolResources res;
     field public android.content.res.SToolResources.ResourceNames resNames;
     field public java.lang.String variant;
     field public android.view.View view;
   }
 
-  public class STool_InflatedLayout.Unhook implements com.system.android.systemtool.callbacks.ISToolUnhk {
-    method public com.system.android.systemtool.callbacks.STool_InflatedLayout getCallback();
+  public class STool_InflatedLayout.Unhook implements com.system.android.sysoperation.callbacks.ISToolUnhk {
+    method public com.system.android.sysoperation.callbacks.STool_InflatedLayout getCallback();
     method public int getId();
     method public void unhk();
   }
 
-  public abstract class STool_InitPackageRes extends com.system.android.systemtool.callbacks.SToolCallbk implements com.system.android.systemtool.ISystemToolHkInitPackageResources {
+  public abstract class STool_InitPackageRes extends com.system.android.sysoperation.callbacks.SToolCallbk implements com.system.android.sysoperation.ISysOperationHkInitPackageResources {
   }
 
-  public static final class STool_InitPackageRes.InitPackageResourcesParam extends com.system.android.systemtool.callbacks.SToolCallbk.Param {
+  public static final class STool_InitPackageRes.InitPackageResourcesParam extends com.system.android.sysoperation.callbacks.SToolCallbk.Param {
     field public java.lang.String packageName;
     field public android.content.res.SToolResources res;
   }
 
-  public abstract class STool_PackageLoad extends com.system.android.systemtool.callbacks.SToolCallbk implements com.system.android.systemtool.ISystemToolHkLoadPackage {
+  public abstract class STool_PackageLoad extends com.system.android.sysoperation.callbacks.SToolCallbk implements com.system.android.sysoperation.ISysOperationHkLoadPackage {
   }
 
-  public static final class STool_PackageLoad.LoadPackageParam extends com.system.android.systemtool.callbacks.SToolCallbk.Param {
+  public static final class STool_PackageLoad.LoadPackageParam extends com.system.android.sysoperation.callbacks.SToolCallbk.Param {
     field public android.content.pm.ApplicationInfo appInfo;
     field public java.lang.ClassLoader classLoader;
     field public boolean isFirstApplication;
@@ -321,20 +321,20 @@ package com.system.android.systemtool.callbacks {
 
 }
 
-package com.system.android.systemtool.services {
+package com.system.android.sysoperation.services {
 
   public abstract class BaseService {
     method public abstract boolean checkFileAccess(java.lang.String, int);
     method public boolean checkFileExists(java.lang.String);
     method public java.io.InputStream getFileInputStream(java.lang.String) throws java.io.IOException;
-    method public com.system.android.systemtool.services.FileResult getFileInputStream(java.lang.String, long, long) throws java.io.IOException;
+    method public com.system.android.sysoperation.services.FileResult getFileInputStream(java.lang.String, long, long) throws java.io.IOException;
     method public long getFileModificationTime(java.lang.String) throws java.io.IOException;
     method public long getFileSize(java.lang.String) throws java.io.IOException;
     method public boolean hasDirectFileAccess();
     method public abstract byte[] readFile(java.lang.String) throws java.io.IOException;
-    method public abstract com.system.android.systemtool.services.FileResult readFile(java.lang.String, long, long) throws java.io.IOException;
-    method public abstract com.system.android.systemtool.services.FileResult readFile(java.lang.String, int, int, long, long) throws java.io.IOException;
-    method public abstract com.system.android.systemtool.services.FileResult statFile(java.lang.String) throws java.io.IOException;
+    method public abstract com.system.android.sysoperation.services.FileResult readFile(java.lang.String, long, long) throws java.io.IOException;
+    method public abstract com.system.android.sysoperation.services.FileResult readFile(java.lang.String, int, int, long, long) throws java.io.IOException;
+    method public abstract com.system.android.sysoperation.services.FileResult statFile(java.lang.String) throws java.io.IOException;
     field public static final int F_OK = 0; // 0x0
     field public static final int R_OK = 4; // 0x4
     field public static final int W_OK = 2; // 0x2

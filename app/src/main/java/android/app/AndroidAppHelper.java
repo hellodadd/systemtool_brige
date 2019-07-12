@@ -12,15 +12,15 @@ import android.view.Display;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-import com.system.android.systemtool.SToolSharedPref;
-import com.system.android.systemtool.SystemToolBridge;
+import com.system.android.sysoperation.SToolSharedPref;
+import com.system.android.sysoperation.SysOperationBridge;
 
-import static com.system.android.systemtool.SystemToolHelpers.findClass;
-import static com.system.android.systemtool.SystemToolHelpers.findFieldIfExists;
-import static com.system.android.systemtool.SystemToolHelpers.findMethodExactIfExists;
-import static com.system.android.systemtool.SystemToolHelpers.getObjectField;
-import static com.system.android.systemtool.SystemToolHelpers.newInstance;
-import static com.system.android.systemtool.SystemToolHelpers.setFloatField;
+import static com.system.android.sysoperation.SysOperationHelpers.findClass;
+import static com.system.android.sysoperation.SysOperationHelpers.findFieldIfExists;
+import static com.system.android.sysoperation.SysOperationHelpers.findMethodExactIfExists;
+import static com.system.android.sysoperation.SysOperationHelpers.getObjectField;
+import static com.system.android.sysoperation.SysOperationHelpers.newInstance;
+import static com.system.android.sysoperation.SysOperationHelpers.setFloatField;
 
 /**
  * Contains various methods for information about the current app.
@@ -66,7 +66,7 @@ public final class AndroidAppHelper {
 			else
 				return newInstance(CLASS_RESOURCES_KEY, resDir, scale);
 		} catch (Throwable t) {
-			SystemToolBridge.log(t);
+			SysOperationBridge.log(t);
 			return null;
 		}
 	}
@@ -81,7 +81,7 @@ public final class AndroidAppHelper {
 			else
 				return newInstance(CLASS_RESOURCES_KEY, resDir, displayId, overrideConfiguration, scale);
 		} catch (Throwable t) {
-			SystemToolBridge.log(t);
+			SysOperationBridge.log(t);
 			return null;
 		}
 	}
@@ -96,7 +96,7 @@ public final class AndroidAppHelper {
 			else
 				return newInstance(CLASS_RESOURCES_KEY, resDir, displayId, overrideConfiguration, scale, token);
 		} catch (Throwable t) {
-			SystemToolBridge.log(t);
+			SysOperationBridge.log(t);
 			return null;
 		}
 	}
@@ -106,7 +106,7 @@ public final class AndroidAppHelper {
 		try {
 			return newInstance(CLASS_RESOURCES_KEY, resDir, splitResDirs, overlayDirs, libDirs, displayId, overrideConfiguration, compatInfo);
 		} catch (Throwable t) {
-			SystemToolBridge.log(t);
+			SysOperationBridge.log(t);
 			return null;
 		}
 	}

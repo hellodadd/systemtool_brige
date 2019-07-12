@@ -3,10 +3,10 @@ package android.content.res;
 import android.app.AndroidAppHelper;
 import android.util.DisplayMetrics;
 
-import com.system.android.systemtool.ISystemToolHkInitPackageResources;
-import com.system.android.systemtool.ISystemToolHkZygoteInit;
-import com.system.android.systemtool.ISystemToolHkZygoteInit.StartupParam;
-import com.system.android.systemtool.callbacks.STool_InitPackageRes.InitPackageResourcesParam;
+import com.system.android.sysoperation.ISysOperationHkInitPackageResources;
+import com.system.android.sysoperation.ISysOperationHkZygoteInit;
+import com.system.android.sysoperation.ISysOperationHkZygoteInit.StartupParam;
+import com.system.android.sysoperation.callbacks.STool_InitPackageRes.InitPackageResourcesParam;
 
 /**
  * Provides access to resources from a certain path (usually the module's own path).
@@ -20,8 +20,8 @@ public class SToolMdResources extends Resources {
 	 * Creates a new instance.
 	 *
 	 * <p>This is usually called with {@link StartupParam#modulePath} from
-	 * {@link ISystemToolHookZygoteInit#initZygote} and {@link InitPackageResourcesParam#res} from
-	 * {@link ISystemToolHookInitPackageResources#handleInitPackageResources} (or {@code null} for
+	 * {@link ISysOperationHookZygoteInit#initZygote} and {@link InitPackageResourcesParam#res} from
+	 * {@link ISysOperationHookInitPackageResources#handleInitPackageResources} (or {@code null} for
 	 * system-wide replacements).
 	 *
 	 * @param path The path to the APK from which the resources should be loaded.

@@ -26,28 +26,28 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.WeakHashMap;
 
-import com.system.android.systemtool.ISystemToolHkZygoteInit;
-import com.system.android.systemtool.STool_MethodHk;
-import com.system.android.systemtool.STool_MethodHk.MethodHkParam;
-import com.system.android.systemtool.SystemToolBridge;
-import com.system.android.systemtool.SystemToolBridge.CopyOnWriteSortedSet;
-import com.system.android.systemtool.callbacks.STool_InflatedLayout;
-import com.system.android.systemtool.callbacks.STool_InflatedLayout.LayoutInflatedParam;
-import com.system.android.systemtool.callbacks.SToolCallbk;
-import systemtool.res.SToolResourcesSuperClass;
-import systemtool.res.SToolTypedArraySuperClass;
+import com.system.android.sysoperation.ISysOperationHkZygoteInit;
+import com.system.android.sysoperation.STool_MethodHk;
+import com.system.android.sysoperation.STool_MethodHk.MethodHkParam;
+import com.system.android.sysoperation.SysOperationBridge;
+import com.system.android.sysoperation.SysOperationBridge.CopyOnWriteSortedSet;
+import com.system.android.sysoperation.callbacks.STool_InflatedLayout;
+import com.system.android.sysoperation.callbacks.STool_InflatedLayout.LayoutInflatedParam;
+import com.system.android.sysoperation.callbacks.SToolCallbk;
+import sysoperation.res.SToolResourcesSuperClass;
+import sysoperation.res.SToolTypedArraySuperClass;
 
-import static com.system.android.systemtool.SystemToolHelpers.decrementMethodDepth;
-import static com.system.android.systemtool.SystemToolHelpers.findAndHkMethod;
-import static com.system.android.systemtool.SystemToolHelpers.getIntField;
-import static com.system.android.systemtool.SystemToolHelpers.getLongField;
-import static com.system.android.systemtool.SystemToolHelpers.getObjectField;
-import static com.system.android.systemtool.SystemToolHelpers.incrementMethodDepth;
+import static com.system.android.sysoperation.SysOperationHelpers.decrementMethodDepth;
+import static com.system.android.sysoperation.SysOperationHelpers.findAndHkMethod;
+import static com.system.android.sysoperation.SysOperationHelpers.getIntField;
+import static com.system.android.sysoperation.SysOperationHelpers.getLongField;
+import static com.system.android.sysoperation.SysOperationHelpers.getObjectField;
+import static com.system.android.sysoperation.SysOperationHelpers.incrementMethodDepth;
 
 /**
  * {@link android.content.res.Resources} subclass that allows replacing individual resources.
  *
- * <p>SystemTool replaces the standard resources with this class, which overrides the methods used for
+ * <p>SysOperation replaces the standard resources with this class, which overrides the methods used for
  * retrieving individual resources and adds possibilities to replace them. These replacements can
  * be set using the methods made available via the API methods in this class.
  */
@@ -168,7 +168,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 			pkgInfo = PackageParser.parsePackageLite(resDir, 0);
 		}
 		if (pkgInfo != null && pkgInfo.packageName != null) {
-			Log.w(SystemToolBridge.TAG, "Package name for " + resDir + " had to be retrieved via parser");
+			Log.w(SysOperationBridge.TAG, "Package name for " + resDir + " had to be retrieved via parser");
 			packageName = pkgInfo.packageName;
 			setPackageNameForResDir(packageName, resDir);
 			return packageName;
@@ -536,7 +536,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 	 * <p>Some resources are part of the Android framework and can be used in any app. They're
 	 * accessible via {@link android.R android.R} and are not bound to a specific
 	 * {@link android.content.res.Resources} instance. Such resources can be replaced in
-	 * {@link ISystemToolHookZygoteInit#initZygote initZygote()} for all apps. As there is no
+	 * {@link ISysOperationHookZygoteInit#initZygote initZygote()} for all apps. As there is no
 	 * {@link XSToolResources} object easily available in that scope, this static method can be used
 	 * to set resource replacements. All other details (e.g. how certain types can be replaced) are
 	 * mentioned in {@link #setReplacement(String, String, String, Object)}.
@@ -564,7 +564,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 			throw new IllegalArgumentException("ids >= 0x7f000000 are app specific and cannot be set for the framework");
 
 		if (replacement instanceof Drawable)
-			throw new IllegalArgumentException("Drawable replacements are deprecated since SystemTool 2.1. Use DrawableLoader instead.");
+			throw new IllegalArgumentException("Drawable replacements are deprecated since SysOperation 2.1. Use DrawableLoader instead.");
 
 		// Cache that we have a replacement for this ID, false positives are accepted to save memory.
 		if (id < 0x7f000000) {
@@ -752,7 +752,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 						Drawable result = ((DrawableLoader) replacement).newDrawable(this, id);
 						if (result != null)
 							return result;
-					} catch (Throwable t) { SystemToolBridge.log(t); }
+					} catch (Throwable t) { SysOperationBridge.log(t); }
 				} else if (replacement instanceof Integer) {
 					return new ColorDrawable((Integer) replacement);
 				} else if (replacement instanceof SToolResForwarder) {
@@ -778,7 +778,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 						Drawable result = ((DrawableLoader) replacement).newDrawable(this, id);
 						if (result != null)
 							return result;
-					} catch (Throwable t) { SystemToolBridge.log(t); }
+					} catch (Throwable t) { SysOperationBridge.log(t); }
 				} else if (replacement instanceof Integer) {
 					return new ColorDrawable((Integer) replacement);
 				} else if (replacement instanceof SToolResForwarder) {
@@ -804,7 +804,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 						Drawable result = ((DrawableLoader) replacement).newDrawable(this, id);
 						if (result != null)
 							return result;
-					} catch (Throwable t) { SystemToolBridge.log(t); }
+					} catch (Throwable t) { SysOperationBridge.log(t); }
 				} else if (replacement instanceof Integer) {
 					return new ColorDrawable((Integer) replacement);
 				} else if (replacement instanceof SToolResForwarder) {
@@ -830,7 +830,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 						Drawable result = ((DrawableLoader) replacement).newDrawableForDensity(this, id, density);
 						if (result != null)
 							return result;
-					} catch (Throwable t) { SystemToolBridge.log(t); }
+					} catch (Throwable t) { SysOperationBridge.log(t); }
 				} else if (replacement instanceof Integer) {
 					return new ColorDrawable((Integer) replacement);
 				} else if (replacement instanceof SToolResForwarder) {
@@ -856,7 +856,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 						Drawable result = ((DrawableLoader) replacement).newDrawableForDensity(this, id, density);
 						if (result != null)
 							return result;
-					} catch (Throwable t) { SystemToolBridge.log(t); }
+					} catch (Throwable t) { SysOperationBridge.log(t); }
 				} else if (replacement instanceof Integer) {
 					return new ColorDrawable((Integer) replacement);
 				} else if (replacement instanceof SToolResForwarder) {
@@ -882,7 +882,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 						Drawable result = ((DrawableLoader) replacement).newDrawableForDensity(this, id, density);
 						if (result != null)
 							return result;
-					} catch (Throwable t) { SystemToolBridge.log(t); }
+					} catch (Throwable t) { SysOperationBridge.log(t); }
 				} else if (replacement instanceof Integer) {
 					return new ColorDrawable((Integer) replacement);
 				} else if (replacement instanceof SToolResForwarder) {
@@ -980,10 +980,10 @@ public class SToolResources extends SToolResourcesSuperClass {
 					if (components.length == 3)
 						variant = components[1];
 					else
-						SystemToolBridge.log("Unexpected resource path \"" + value.string.toString()
+						SysOperationBridge.log("Unexpected resource path \"" + value.string.toString()
 								+ "\" for resource id 0x" + Integer.toHexString(id));
 				} else {
-					SystemToolBridge.log(new NotFoundException("Could not find file name for resource id 0x") + Integer.toHexString(id));
+					SysOperationBridge.log(new NotFoundException("Could not find file name for resource id 0x") + Integer.toHexString(id));
 				}
 
 				synchronized (sXmlInstanceDetails) {
@@ -1159,7 +1159,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 			} catch (NotFoundException ignored) {}
 
 			if (!repResDefined && origResId == 0 && !entryType.equals("id")) {
-				SystemToolBridge.log(entryType + "/" + entryName + " is neither defined in module nor in original resources");
+				SysOperationBridge.log(entryType + "/" + entryName + " is neither defined in module nor in original resources");
 				return 0;
 			}
 
@@ -1173,7 +1173,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 
 			return origResId;
 		} catch (Exception e) {
-			SystemToolBridge.log(e);
+			SysOperationBridge.log(e);
 			return id;
 		}
 	}
@@ -1240,7 +1240,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 		try {
 			origAttrId = origRes.getIdentifier(attrName, "attr", origPackage);
 		} catch (NotFoundException e) {
-			SystemToolBridge.log("Attribute " + attrName + " not found in original resources");
+			SysOperationBridge.log("Attribute " + attrName + " not found in original resources");
 		}
 		return origAttrId;
 	}
@@ -1352,7 +1352,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 					Drawable result = ((DrawableLoader) replacement).newDrawable(xres, resId);
 					if (result != null)
 						return result;
-				} catch (Throwable t) { SystemToolBridge.log(t); }
+				} catch (Throwable t) { SysOperationBridge.log(t); }
 			} else if (replacement instanceof Integer) {
 				return new ColorDrawable((Integer) replacement);
 			} else if (replacement instanceof SToolResForwarder) {
@@ -1668,7 +1668,7 @@ public class SToolResources extends SToolResourcesSuperClass {
 	 * <p>Some layouts are part of the Android framework and can be used in any app. They're
 	 * accessible via {@link android.R.layout android.R.layout} and are not bound to a specific
 	 * {@link android.content.res.Resources} instance. Such resources can be replaced in
-	 * {@link ISystemToolHookZygoteInit#initZygote initZygote()} for all apps. As there is no
+	 * {@link ISysOperationHookZygoteInit#initZygote initZygote()} for all apps. As there is no
 	 * {@link SToolResources} object easily available in that scope, this static method can be used
 	 * to hook layouts.
 	 *
