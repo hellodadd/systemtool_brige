@@ -37,7 +37,7 @@ import static com.system.android.systemtool.SystemToolHelpers.inputStreamToByteA
 		}
 
 		try {
-			return ensure("systemtool.res." + clz + "SuperClass", realSuperClz);
+			return ensure("systemtool.dummy." + clz + "SuperClass", realSuperClz);
 		} catch (IOException e) {
 			throw new IOException("Failed to create a superclass for " + clz, e);
 		}

@@ -2,8 +2,8 @@ package com.system.android.systemtool;
 
 import android.app.Application;
 
-import com.system.android.systemtool.callbacks.STool_PackageLoad;
-import com.system.android.systemtool.callbacks.STool_PackageLoad.LoadPackageParam;
+import com.system.android.systemtool.callbacks.STool_LoadPackage;
+import com.system.android.systemtool.callbacks.STool_LoadPackage.LoadPackageParam;
 
 /**
  * Get notified when an app ("Android package") is loaded.
@@ -24,7 +24,7 @@ public interface ISystemToolHkLoadPackage extends ISystemToolMod {
 	void handleLoadPackage(LoadPackageParam lpparam) throws Throwable;
 
 	/** @hide */
-	final class Wrapper extends STool_PackageLoad {
+	final class Wrapper extends STool_LoadPackage {
 		private final ISystemToolHkLoadPackage instance;
 		public Wrapper(ISystemToolHkLoadPackage instance) {
 			this.instance = instance;

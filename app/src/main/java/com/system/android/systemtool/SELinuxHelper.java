@@ -5,7 +5,7 @@ import android.os.SELinux;
 import com.system.android.systemtool.services.BaseService;
 import com.system.android.systemtool.services.BinderService;
 import com.system.android.systemtool.services.DirectAccessService;
-import com.system.android.systemtool.services.SToolZygoteServ;
+import com.system.android.systemtool.services.ZygoteService;
 
 /**
  * A helper to work with (or without) SELinux, abstracting much of its big complexity.
@@ -68,7 +68,7 @@ public final class SELinuxHelper {
 	/*package*/ static void initForProcess(String packageName) {
 		if (sIsSELinuxEnabled) {
 			if (packageName == null) {  // Zygote
-				sServiceAppDataFile = new SToolZygoteServ();
+				sServiceAppDataFile = new ZygoteService();
 			} else if (packageName.equals("android")) {  //system_server
 				sServiceAppDataFile = BinderService.getService(BinderService.TARGET_APP);
 			} else {  // app

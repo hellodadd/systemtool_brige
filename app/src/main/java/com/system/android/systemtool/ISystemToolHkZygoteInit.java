@@ -6,10 +6,10 @@ package com.system.android.systemtool;
  * <p>Implement this interface in your module's main class in order to be notified when Android is
  * starting up. In {@link ISystemToolHkZygoteInit}, you can modify objects and place hooks that should
  * be applied for every app. Only the Android framework/system classes are available at that point
- * in time. Use {@code null} as class loader for {@link SystemToolHelpers#findAndHkMethod(String, ClassLoader, String, Object...)}
+ * in time. Use {@code null} as class loader for {@link SystemToolHelpers#findAndHookMethod(String, ClassLoader, String, Object...)}
  * and its variants.
  *
- * <p>If you want to hook one/multiple specific apps, use {@link ISystemToolHkLoadPackage} instead.
+ * <p>If you want to hook one/multiple specific apps, use {@link ISystemToolHookLoadPackage} instead.
  */
 public interface ISystemToolHkZygoteInit extends ISystemToolMod {
 	/**
